@@ -209,13 +209,14 @@ async function goodByeMessage() {
 
 goodByeMessage()
 
-function randomDog () {
-  let url = 'https://dog.ceo/api/breeds/image/random'
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      document.querySelector('img').src = data.message
-      console.log(data)
-    })
+async function randomDog () {
+  try {
+    const res = await fetch('https://dog.ceo/api/breeds/image/random')
+    const data = await res.json()
+    document.querySelector('img').src = data.message
+    console.log(data)
+  } catch (error) {
+    console.error('Error:', error)
+  }
 }
 
